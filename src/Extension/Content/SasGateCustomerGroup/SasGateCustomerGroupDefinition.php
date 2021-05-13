@@ -25,7 +25,7 @@ class SasGateCustomerGroupDefinition extends MappingEntityDefinition
         return new FieldCollection([
             (new FkField('gate_id', 'gateId', SasGateDefinition::class))->addFlags(new PrimaryKey(), new Required()),
             (new FkField('customer_group_id', 'customerGroupId', CustomerGroupDefinition::class))->addFlags(new PrimaryKey(), new Required()),
-            new ManyToOneAssociationField('customerGroup', 'customer_group_id', CustomerGroupDefinition::class)
+            new ManyToOneAssociationField('customerGroup', 'customer_group_id', CustomerGroupDefinition::class),
         ]);
     }
 }

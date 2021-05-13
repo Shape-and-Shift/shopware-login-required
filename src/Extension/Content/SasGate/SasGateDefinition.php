@@ -41,7 +41,7 @@ class SasGateDefinition extends EntityDefinition
             (new FkField('category_id', 'categoryId', CategoryDefinition::class))->addFlags(new Required()),
             new BoolField('is_enabled', 'isEnabled'),
             (new OneToOneAssociationField('category', 'category_id', 'id', CategoryDefinition::class, false)),
-            new ManyToManyAssociationField('customerGroups', CustomerGroupDefinition::class, SasGateCustomerGroupDefinition::class, 'gate_id', 'customer_group_id')
+            new ManyToManyAssociationField('customerGroups', CustomerGroupDefinition::class, SasGateCustomerGroupDefinition::class, 'gate_id', 'customer_group_id'),
         ]);
     }
 }

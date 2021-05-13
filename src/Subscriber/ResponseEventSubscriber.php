@@ -16,7 +16,6 @@ use Shopware\Storefront\Framework\Routing\RequestTransformer;
 use Shopware\Storefront\Framework\Routing\StorefrontResponse;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class ResponseEventSubscriber implements EventSubscriberInterface
 {
@@ -76,8 +75,7 @@ class ResponseEventSubscriber implements EventSubscriberInterface
         $this->checkLoginNavigationPage($request, $response);
     }
 
-
-    private function checkLoginNavigationPage(Request $request, Response $response): void
+    private function checkLoginNavigationPage(Request $request, StorefrontResponse $response): void
     {
         if (!str_contains($request->getPathInfo(), '/navigation/')) {
             return;
@@ -98,24 +96,14 @@ class ResponseEventSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $cacheState = $request->cookies->get('sw-states');
-        if ($cacheState === CacheResponseSubscriber::STATE_LOGGED_IN) {
-            $meta = $this->getMetaTags($response->getContent());
-            if (empty($meta['sas-group-id'])) {
-                return;
-            }
-
-            $this->checkLoggedInByGroup($gate, $meta['sas-group-id'], $request);
-        } else {
-            $this->directToLoginPage($request);
-        }
+        $this->checkByCustomerGroup($gate, $request, $response);
     }
 
     private function checkLoginHomePage(Request $request, StorefrontResponse $response, string $salesChannelId): void
     {
         if ($request->getRequestUri() === '/') {
             $meta = $this->getMetaTags($response->getContent());
-            if (!array_key_exists('sas-group-id', $meta)) {
+            if (!\array_key_exists('sas-group-id', $meta)) {
                 return;
             }
 
@@ -137,25 +125,47 @@ class ResponseEventSubscriber implements EventSubscriberInterface
                 return;
             }
 
-            $cacheState = $request->cookies->get('sw-states');
-            if ($cacheState === CacheResponseSubscriber::STATE_LOGGED_IN) {
-                $this->checkLoggedInByGroup($gate, $meta['sas-group-id'], $request);
-            } else {
-                $this->directToLoginPage($request);
-            }
+            $this->checkByCustomerGroup($gate, $request, $response);
         }
     }
 
-    private function checkLoggedInByGroup(SasGateEntity $gate, string $groupId, Request $request): void
+    private function checkByCustomerGroup(SasGateEntity $gate, Request $request, StorefrontResponse $response): void
     {
-        if (count($gate->getCustomerGroups()) === 0) {
-            // Direct to login page because extended settings of allow customer group is empty
-            return;
+        $groupId = null;
+        if ($_SERVER['SHOPWARE_HTTP_CACHE_ENABLED']) {
+            $cacheState = $request->cookies->get('sw-states');
+            if ($cacheState === CacheResponseSubscriber::STATE_LOGGED_IN) {
+                $meta = $this->getMetaTags($response->getContent());
+                if (empty($meta['sas-group-id'])) {
+                    return;
+                }
+
+                $groupId = $meta['sas-group-id'];
+            } else {
+                $this->directToLoginPage($request);
+            }
+        } else {
+            if (empty($response->getContext())) {
+                $this->directToLoginPage($request);
+            }
+
+            if (!$response->getContext()->getCustomer()) {
+                $this->directToLoginPage($request);
+            } else {
+                $groupId = $response->getContext()->getCustomer()->getGroupId();
+            }
         }
 
-        if (empty($gate->getCustomerGroups()->get($groupId))) {
-            // direct to permission page if does not exists groupId
-            $this->directToPermissionPage($request);
+        if ($groupId) {
+            if (\count($gate->getCustomerGroups()) === 0) {
+                // Direct to login page because extended settings of allow customer group is empty
+                return;
+            }
+
+            if (empty($gate->getCustomerGroups()->get($groupId))) {
+                // direct to permission page if does not exists groupId
+                $this->directToPermissionPage($request);
+            }
         }
     }
 
@@ -195,8 +205,10 @@ class ResponseEventSubscriber implements EventSubscriberInterface
 
           ~ix';
 
-        if(preg_match_all($pattern, $str, $out))
+        if (preg_match_all($pattern, $str, $out)) {
             return array_combine($out[1], $out[2]);
+        }
+
         return [];
     }
 }
