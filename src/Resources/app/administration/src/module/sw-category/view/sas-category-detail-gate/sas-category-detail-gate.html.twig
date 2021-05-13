@@ -1,0 +1,23 @@
+{% block sas_category_detail_gate %}
+    <div class="sas-category-detail__gate">
+        <template v-if="hasLoadedCustomerGroup">
+            <sw-card :title="$tc('sas-login-required.sasCategoryDetailGate.settingTitle')">
+                <sw-field
+                    class="sas-category-detail__gate-switch"
+                    type="switch"
+                    :label="$tc('sas-login-required.sasCategoryDetailGate.enableSwitch')"
+                    v-model="categoryDetailGate.isEnabled">
+                </sw-field>
+            </sw-card>
+
+            <sw-card :title="$tc('sas-login-required.sasCategoryDetailGate.extendedSettingsTitle')">
+                <sw-entity-multi-select
+                    class="sas-category-detail__gate-select-customer-group"
+                    :label="$tc('sas-login-required.sasCategoryDetailGate.allowCustomerGroupLabel')"
+                    :disabled="!categoryDetailGate.isEnabled"
+                    v-model="categoryDetailGate.customerGroups">
+                </sw-entity-multi-select>
+            </sw-card>
+        </template>
+    </div>
+{% endblock %}

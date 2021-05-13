@@ -1,0 +1,26 @@
+{
+  "name": "sas/login-required",
+  "description": "Login required plugin",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "version":"1.0.0",
+  "autoload": {
+    "psr-4": {
+      "SasLoginRequired\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "SasLoginRequired\\SasLoginRequired",
+    "label": {
+      "de-DE": "Login required plugin",
+      "en-GB": "Login required plugin"
+    }
+  },
+  "authors":[
+    {
+        "name":"Shape & Shift",
+        "role":"Manufacturer",
+        "homepage":"https://shapeandshift.dev"
+    }
+  ]
+}

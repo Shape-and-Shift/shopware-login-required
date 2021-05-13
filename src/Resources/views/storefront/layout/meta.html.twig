@@ -1,0 +1,7 @@
+{% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
+
+{% block layout_head_meta_tags %}
+    {{ parent() }}
+
+    <meta name="sas-group-id" content="{{ context.customer.groupId }}">
+{% endblock %}

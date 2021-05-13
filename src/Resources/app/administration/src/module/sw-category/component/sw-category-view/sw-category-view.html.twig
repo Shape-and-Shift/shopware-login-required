@@ -1,0 +1,12 @@
+{% block sw_category_view_tabs_cms %}
+    {% parent %}
+
+    <sw-tabs-item
+        v-show="cmsPage"
+        :disabled="!acl.can('category.editor')"
+        class="sw-category-detail__tab-gate"
+        :route="{ name: 'sw.category.detail.gate' }"
+        :title="$tc('sas-login-required.categoryView.gateTitle')">
+        {{ $tc('sas-login-required.categoryView.gateTitle') }}
+    </sw-tabs-item>
+{% endblock %}

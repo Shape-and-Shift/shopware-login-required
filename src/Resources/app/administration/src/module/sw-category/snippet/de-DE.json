@@ -1,0 +1,13 @@
+{
+    "sas-login-required": {
+        "categoryView": {
+            "gateTitle": "Gate"
+        },
+        "sasCategoryDetailGate": {
+            "settingTitle": "Gate-Einstellungen",
+            "enableSwitch": "Aktivieren Sie",
+            "extendedSettingsTitle": "Erweiterte Einstellungen",
+            "allowCustomerGroupLabel": "Zugriff auf die Kundengruppe zulassen"
+        }
+    }
+}

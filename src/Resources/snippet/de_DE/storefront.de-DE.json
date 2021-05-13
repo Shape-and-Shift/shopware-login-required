@@ -1,0 +1,9 @@
+{
+    "sasLoginRequired": {
+        "accountPermission": {
+            "pageHeader": "Sie haben keine Erlaubnis",
+            "pageDescription": "Es tut uns leid, Sie haben keine Berechtigung, auf diese Seite zuzugreifen.",
+            "backToAccountPage": "Zurück zur Kontoseite"
+        }
+    }
+}

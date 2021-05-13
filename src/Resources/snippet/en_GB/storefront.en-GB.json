@@ -1,0 +1,9 @@
+{
+    "sasLoginRequired": {
+        "accountPermission": {
+            "pageHeader": "You do not have permission",
+            "pageDescription": "We are sorry, you do not have permission to access to this page.\n\n",
+            "backToAccountPage": "Back to account page"
+        }
+    }
+}

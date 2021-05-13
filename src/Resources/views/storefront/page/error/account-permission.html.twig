@@ -1,0 +1,21 @@
+{% sw_extends '@Storefront/storefront/page/error/_page.html.twig' %}
+
+{% block base_content %}
+    <main class="content-main">
+        {% block account_perrmission_error_content %}
+            <div class="container mt-5">
+                <h1 class="mt-5 text-center">{{ "sasLoginRequired.accountPermission.pageHeader"|trans|sw_sanitize }}</h1>
+                <p class="text-center w-60-l">{{ "sasLoginRequired.accountPermission.pageDescription"|trans|sw_sanitize }}</p>
+
+                {% block account_perrmission_return %}
+                    <div class="text-center">
+                        <a href="{{ path('frontend.account.home.page') }}"
+                           class="btn btn-primary justify-center">
+                            {{ "sasLoginRequired.accountPermission.backToAccountPage"|trans|sw_sanitize }}
+                        </a>
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </main>
+{% endblock %}
