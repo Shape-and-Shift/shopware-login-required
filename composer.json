@@ -1,26 +1,41 @@
 {
-  "name": "sas/login-required",
-  "description": "Login required plugin",
-  "type": "shopware-platform-plugin",
-  "license": "MIT",
-  "version":"1.0.0",
-  "autoload": {
-    "psr-4": {
-      "SasLoginRequired\\": "src/"
+    "name":"sas/login-required",
+    "description":"Login required plugin",
+    "type":"shopware-platform-plugin",
+    "license":"MIT",
+    "version":"1.0.0",
+    "authors":[
+        {
+            "name":"Shape & Shift",
+            "role":"Manufacturer",
+            "homepage":"https://shapeandshift.dev"
+        }
+    ],
+    "require":{
+        "shopware/core":"~6.4.0"
+    },
+    "autoload":{
+        "psr-4":{
+            "SasLoginRequired\\":"src/"
+        }
+    },
+    "extra":{
+        "shopware-plugin-class":"SasLoginRequired\\SasLoginRequired",
+        "label":{
+            "de-DE":"Login noetig um eine Kategorie aufzurufen",
+            "en-GB":"Require a login for categories"
+        },
+        "description":{
+            "de-DE":"Du kannst eine Kategorie fuer einen User nur erreichbar machen, nachdem dieser eingeloggt ist. Weiterhin kannst du zusaetzlich auswaehlen, ob diese Kategorie nur fuer bestimmte Kundengruppen zugaenglich ist.",
+            "en-GB":"You can make a category accessible for a user only after he is logged in. Furthermore, you can additionally select whether this category is only accessible for certain customer groups."
+        },
+        "manufacturerLink":{
+            "de-DE":"https://shapeandshift.dev",
+            "en-GB":"https://shapeandshift.dev"
+        },
+        "supportLink":{
+            "de-DE":"https://shapeandshift.dev",
+            "en-GB":"https://shapeandshift.dev"
+        }
     }
-  },
-  "extra": {
-    "shopware-plugin-class": "SasLoginRequired\\SasLoginRequired",
-    "label": {
-      "de-DE": "Login required plugin",
-      "en-GB": "Login required plugin"
-    }
-  },
-  "authors":[
-    {
-        "name":"Shape & Shift",
-        "role":"Manufacturer",
-        "homepage":"https://shapeandshift.dev"
-    }
-  ]
 }
