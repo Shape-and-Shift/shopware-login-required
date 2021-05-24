@@ -18,7 +18,6 @@ class Migration1620465124CreateGateCustomerGroupTable extends MigrationStep
             CREATE TABLE IF NOT EXISTS `sas_gate_customer_group` (
                 `gate_id` BINARY(16) NOT NULL,
                 `customer_group_id` BINARY(16) NOT NULL,
-                `created_at` DATETIME(3) NOT NULL,
                 PRIMARY KEY (`gate_id`, `customer_group_id`),
                 CONSTRAINT `fk.sas_gate_customer_group.gate_id` FOREIGN KEY (`gate_id`)
                     REFERENCES `sas_gate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
