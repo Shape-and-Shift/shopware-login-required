@@ -56,6 +56,9 @@ class ResponseEventSubscriber implements EventSubscriberInterface
         $request = $event->getRequest();
         /** @var StorefrontResponse $response */
         $response = $event->getResponse();
+        if (!$response instanceof StorefrontResponse) {
+            return;
+        }
 
         $salesChannelId = $request->attributes->get(PlatformRequest::ATTRIBUTE_SALES_CHANNEL_ID);
         if (empty($salesChannelId)) {
