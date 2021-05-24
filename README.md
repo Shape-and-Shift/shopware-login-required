@@ -1,12 +1,15 @@
 # Shopware 6 Login required for the categories
-This plugin is supporting to check the logged-in status before the users access a category
+With our Shopware Required Login plugin you can restrict the access of a category to logged in users,
+or to specific customer groups.
 
-After installing this plugin, you can find the setting on the gate tab on the category detail page
+After the plugin is installed you will find a new **Gate** tab within your category.
 
 ![category detail page](./docs/image1.png)
 
-In the gate settings card if you switch to enable means the users who aren't logged in can't access this category
+Within a category you have a new settings tab called **gate**.
+If you switch the toggle this category is only accessible after the user is logged in.
 
 ![category detail page](./docs/image2.png)
 
-Besides, when you switch to enable you can add the customer groups able to access this category, users in other groups will not be able to access it.
+You can also restrict the access to certain customer groups. If you choose a customer group, only this customer group
+is able to access the category.
