@@ -26,7 +26,7 @@
             "en-GB":"Require a login for categories"
         },
         "description":{
-            "de-DE":"Du kannst eine Kategorie fuer einen User nur erreichbar machen, nachdem dieser eingeloggt ist. Weiterhin kannst du zusaetzlich auswaehlen, ob diese Kategorie nur fuer bestimmte Kundengruppen zugaenglich ist.",
+            "de-DE":"Der User kann eine Kategorie nur nach erfolgreichen Login aufrufen. Weiterhin kannst du zusaetzlich auswaehlen, ob diese Kategorie nur fuer bestimmte Kundengruppen zugaenglich ist.",
             "en-GB":"You can make a category accessible for a user only after he is logged in. Furthermore, you can additionally select whether this category is only accessible for certain customer groups."
         },
         "manufacturerLink":{
